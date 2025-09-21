@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -194,5 +195,14 @@ public class BlurView extends FrameLayout {
 
     private boolean usingRenderNode() {
         return blurController instanceof RenderNodeBlurController;
+    }
+
+    //Ext add
+    public BlurViewFacade setupWith(@NonNull ViewGroup rootView) {
+        blurController.destroy();
+        BlurAlgorithm algorithm = new RenderScriptBlur(getContext());
+        blurController = new PreDrawBlurController(this, rootView, overlayColor, algorithm, DEFAULT_SCALE_FACTOR, true);
+        blurController.setBlurAutoUpdate(true);
+        return blurController;
     }
 }
