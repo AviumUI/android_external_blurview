@@ -1,0 +1,16 @@
+android_library {
+    name: "blurview-lib",
+
+    sdk_version: "current",
+
+    srcs: ["src/main/java/**/*.java"],
+
+    resource_dirs: ["src/main/res"],
+
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.core_core",
+        "androidx.annotation_annotation",
+    ],
+    manifest: "src/main/AndroidManifest.xml",
+}
